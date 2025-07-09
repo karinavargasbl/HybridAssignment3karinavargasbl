@@ -9,14 +9,20 @@ export default function QuizResults({ score, total, questions, userAnswers, onRe
         <div key={index} className="result-question">
           <h4 dangerouslySetInnerHTML={{ __html: q.question }} />
           <p>
-            Your answer:{' '}
-            <span
-              className={
-                userAnswers[q.id] === q.correct_answer ? 'correct' : 'incorrect'
-              }
-              dangerouslySetInnerHTML={{ __html: userAnswers[q.id] }}
-            />
-          </p>
+  Your answer:{' '}
+  <span
+    className={
+      userAnswers[q.id] === q.correct_answer ? 'correct' : 'incorrect'
+    }
+    dangerouslySetInnerHTML={{ __html: userAnswers[q.id] }}
+  />
+  {userAnswers[q.id] === q.correct_answer ? (
+    <span style={{ color: 'green', marginLeft: '8px' }}>✅</span>
+  ) : (
+    <span style={{ color: 'red', marginLeft: '8px' }}>❌</span>
+  )}
+</p>
+
           {userAnswers[q.id] !== q.correct_answer && (
             <p>
               Correct answer:{' '}
